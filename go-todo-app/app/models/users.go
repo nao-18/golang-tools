@@ -37,15 +37,24 @@ func (u *User) CreateUser() (err error) {
 
 func GetUser(id int) (user User, err error) {
 	user = User{}
-	cmd := `select where id, uuid, name, email, password, created_at
+	cmd := `select id, uuid, name, email, password, created_at
 		from users where id = ?`
 	err = Db.QueryRow(cmd, id).Scan(
-			&user.ID,
-			&user.UUID,
-			&user.Name,
-			&user.Email,
-			&user.PassWord,
-			&user.CreatedAt,
-		)
+		&user.ID,
+		&user.UUID,
+		&user.Name,
+		&user.Email,
+		&user.PassWord,
+		&user.CreatedAt,
+	)
 	return user, err
+}
+
+func (u *User) UpdateUser() (err error) {
+	cmd := `update users set name = ?, email = ? where id = ?`
+	_, err = Db.Exec(cmd, u.Name, u.Email, u.ID)
+	if err != nil {
+		log.Fatalln(err)
+	}
+	return err
 }
