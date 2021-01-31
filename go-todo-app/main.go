@@ -55,9 +55,16 @@ func main() {
 	*/
 
 	user, _ := models.GetUser(2)
-	user.CreateTodo("TEST CONTENT")
+	user.CreateTodo("TEST CONTENT3")
 
-	todos, _ := models.GetTodos()
+	/*
+		todos, _ := models.GetTodos()
+		for _, v := range todos {
+			fmt.Println(v)
+		}
+	*/
+
+	todos, _ := user.GetTodosByUser()
 	for _, v := range todos {
 		fmt.Println(v)
 	}
