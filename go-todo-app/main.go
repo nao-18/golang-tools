@@ -1,9 +1,6 @@
 package main
 
-import (
-	"fmt"
-	"go-tools/go-todo-app/app/models"
-)
+import "go-tools/go-todo-app/app/models"
 
 func main() {
 	/*
@@ -54,8 +51,10 @@ func main() {
 
 	*/
 
-	user, _ := models.GetUser(2)
-	user.CreateTodo("TEST CONTENT3")
+	/*
+		user, _ := models.GetUser(2)
+		user.CreateTodo("TEST CONTENT3")
+	*/
 
 	/*
 		todos, _ := models.GetTodos()
@@ -64,8 +63,15 @@ func main() {
 		}
 	*/
 
-	todos, _ := user.GetTodosByUser()
-	for _, v := range todos {
-		fmt.Println(v)
-	}
+	/*
+		todos, _ := user.GetTodosByUser()
+		for _, v := range todos {
+			fmt.Println(v)
+		}
+	*/
+
+	//todo更新
+	t, _ := models.GetTodo(1)
+	t.Content = "update todo"
+	t.UpdateTodo()
 }
